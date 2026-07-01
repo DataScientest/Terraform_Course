@@ -1,0 +1,29 @@
+services:
+  terraform:
+    image: hashicorp/terraform:1.9.8
+    container_name: terraform-course-terraform
+    working_dir: /workspace/terraform
+    entrypoint: ["sh", "-c", "sleep infinity"]
+    volumes:
+      - ./:/workspace
+
+  localstack:
+    image: localstack/localstack:3.8
+    container_name: terraform-course-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=eu-west-3
+    volumes:
+      - ./localstack/data:/var/lib/localstack
+
+  inference-api:
+    build:
+      context: ./docker/inference_api
+    container_name: terraform-course-inference-api
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_VERSION=v1

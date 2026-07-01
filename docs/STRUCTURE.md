@@ -44,6 +44,8 @@ Objectif :
 
 Contiendra le coeur du code Terraform.
 
+Dans ce use case, Terraform est exécuté depuis un conteneur Docker, afin d'éviter de dépendre d'une installation locale chez l'apprenant.
+
 Ce dossier sera amené à évoluer au fil des branches, par exemple avec :
 
 - `versions.tf`
@@ -78,6 +80,7 @@ Exemples possibles plus tard :
 
 - script de validation locale
 - wrapper de démarrage du lab
+- wrapper pour exécuter Terraform dans le conteneur
 
 ### `tests/`
 

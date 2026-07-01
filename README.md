@@ -2,6 +2,10 @@
 
 Ce repo porte le **use case fil rouge** du module Terraform MLOps.
 
+Repo officiel du support :
+
+`https://github.com/DataScientest/Terraform_Course`
+
 L'objectif est de faire grandir progressivement une **mini-plateforme locale de scoring de fraude** en s'appuyant sur :
 
 - Terraform
@@ -15,6 +19,23 @@ Le produit final visé n'est pas une plateforme cloud complète, mais une base l
 - configurer plusieurs environnements
 - comprendre le state Terraform
 - structurer un projet infra maintenable
+
+## Prise en main
+
+Commencez par cloner le repo :
+
+```bash
+git clone https://github.com/DataScientest/Terraform_Course.git
+cd Terraform_Course
+```
+
+Dans ce use case, on évite de dépendre d'une installation locale de Terraform.
+
+Les briques principales du lab sont toutes dockerisées :
+
+- `terraform`
+- `localstack`
+- `inference-api`
 
 ## Logique de travail
 
@@ -49,3 +70,12 @@ Elle servira à préparer :
 - LocalStack
 - les healthchecks de base
 - la structure initiale du use case
+
+## Demarrage rapide
+
+```bash
+docker compose up --build -d
+docker compose exec terraform terraform version
+curl http://localhost:4566/_localstack/health
+curl http://localhost:8000/health
+```
