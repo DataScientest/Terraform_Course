@@ -12,3 +12,10 @@ Dans la branche `01-artifact-bucket`, vous trouverez :
 La première vraie ressource du produit est :
 
 - un bucket S3 local représentant le stockage d'artefacts du modèle
+
+Dans la branche `02-variables-envs`, le projet devient configurable avec :
+
+- `variables.tf`
+- `dev.tfvars`
+- `prod.tfvars`
+- des outputs plus lisibles
