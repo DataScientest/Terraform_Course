@@ -1,5 +1,5 @@
 provider "aws" {
-  region                      = #Todo
+  region                      = var.aws_region
   access_key                  = "test"
   secret_key                  = "test"
   skip_credentials_validation = true
@@ -11,3 +11,5 @@ provider "aws" {
     s3 = "http://localstack:4566"
   }
 }
+
+provider "docker" {}

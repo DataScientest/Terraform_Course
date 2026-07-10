@@ -19,3 +19,9 @@ Dans la branche `02-variables-envs`, le projet devient configurable avec :
 - `dev.tfvars`
 - `prod.tfvars`
 - des outputs plus lisibles
+
+Dans la branche `03-inference-runtime`, le produit ajoute une nouvelle brique :
+
+- un runtime d'inférence géré par le provider Docker
+- une image buildée depuis `docker/inference_api`
+- un conteneur exposé localement via Terraform

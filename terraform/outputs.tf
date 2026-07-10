@@ -1,14 +1,19 @@
 output "artifact_bucket_name" {
   description = "Nom du bucket d'artefacts du modele"
-  value       = #Todo
+  value       = aws_s3_bucket.model_artifacts.bucket
 }
 
 output "environment" {
   description = "Environnement actuellement vise"
-  value       = #Todo
+  value       = var.environment
 }
 
 output "localstack_s3_endpoint" {
   description = "Endpoint S3 LocalStack utilise par Terraform"
   value       = "http://localhost:4566"
+}
+
+output "inference_runtime_url" {
+  description = "URL locale du runtime d'inference gere par Terraform"
+  value       = "http://localhost:${var.runtime_port}"
 }

@@ -6,6 +6,7 @@ services:
     entrypoint: ["sh", "-c", "sleep infinity"]
     volumes:
       - ./:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
 
   localstack:
     image: localstack/localstack:3.8
