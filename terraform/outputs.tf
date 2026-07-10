@@ -1,11 +1,11 @@
 output "artifact_bucket_name" {
   description = "Nom du bucket d'artefacts du modele"
-  value       = aws_s3_bucket.model_artifacts.bucket
+  value       = #Todo
 }
 
 output "environment" {
   description = "Environnement actuellement vise"
-  value       = var.environment
+  value       = #Todo
 }
 
 output "localstack_s3_endpoint" {

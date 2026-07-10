@@ -1,5 +1,5 @@
 provider "aws" {
-  region                      = var.aws_region
+  region                      = #Todo
   access_key                  = "test"
   secret_key                  = "test"
   skip_credentials_validation = true

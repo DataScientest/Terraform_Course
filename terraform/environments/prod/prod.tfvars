@@ -1,3 +1,3 @@
 project_name = "fraud-scoring"
-environment  = "prod"
+environment  = #Todo
 aws_region   = "eu-west-3"

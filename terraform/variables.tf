@@ -6,11 +6,11 @@ variable "project_name" {
 
 variable "environment" {
   description = "Environnement cible"
-  type        = string
+  type        = #Todo
 }
 
 variable "aws_region" {
   description = "Region logique du provider AWS-like"
-  type        = string
+  type        = #Todo
   default     = "eu-west-3"
 }
