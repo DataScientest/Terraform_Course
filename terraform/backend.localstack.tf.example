@@ -1,0 +1,18 @@
+# Exemple pedagogique de backend distant simule avec LocalStack.
+#
+# Ce fichier n'est pas charge automatiquement par Terraform car son extension
+# n'est pas `.tf`. Il sert uniquement de support de lecture pour le chapitre sur
+# le state et la collaboration.
+
+terraform {
+  backend "s3" {
+    bucket                      = "fraud-scoring-terraform-state"
+    key                         = "dev/terraform.tfstate"
+    region                      = "eu-west-3"
+    endpoint                    = "http://localstack:4566"
+    skip_credentials_validation = true
+    skip_metadata_api_check     = true
+    skip_region_validation      = true
+    force_path_style            = true
+  }
+}

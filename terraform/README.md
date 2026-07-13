@@ -25,3 +25,9 @@ Dans la branche `03-inference-runtime`, le produit ajoute une nouvelle brique :
 - un runtime d'inférence géré par le provider Docker
 - une image buildée depuis `docker/inference_api`
 - un conteneur exposé localement via Terraform
+
+Dans la branche `04-state-collaboration`, le produit ne change pas fortement de forme, mais le repo gagne en discipline :
+
+- un `Makefile` pour le workflow courant
+- une documentation explicite sur le `state`
+- un exemple de backend S3-like pour illustrer la collaboration

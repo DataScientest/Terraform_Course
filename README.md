@@ -37,6 +37,21 @@ Les briques principales du lab sont toutes dockerisées :
 - `localstack`
 - `inference-api`
 
+## Workflow rapide
+
+Le repo fournit aussi un `Makefile` pour stabiliser les commandes de base :
+
+```bash
+make up
+make tf-version
+make fmt-check
+make validate
+make plan-dev
+make apply-dev
+make output
+make destroy-dev
+```
+
 ## Logique de travail
 
 Le repo sera construit **branche par branche**.
