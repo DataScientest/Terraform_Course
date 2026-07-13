@@ -22,7 +22,7 @@ resource "docker_container" "inference_runtime" {
 
   ports {
     internal = 8000
-    external = var.runtime_port
+    external = #TODO
   }
 
   env = [
