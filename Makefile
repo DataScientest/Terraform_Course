@@ -1,4 +1,4 @@
-.PHONY: up down ps tf-version fmt-check validate plan-dev apply-dev destroy-dev output state-list smoke
+.PHONY: up down ps tf-version fmt-check validate plan-dev plan-dev-save apply-dev destroy-dev output state-list smoke smoke-dev-runtime
 
 up:
 	docker compose up -d
@@ -21,6 +21,9 @@ validate:
 plan-dev:
 	./terraform/scripts/tf.sh plan -var-file=environments/dev/dev.tfvars
 
+plan-dev-save:
+	./terraform/scripts/tf.sh plan -var-file=environments/dev/dev.tfvars -out=tfplan
+
 apply-dev:
 	./terraform/scripts/tf.sh apply -auto-approve -var-file=environments/dev/dev.tfvars
 
@@ -35,3 +38,6 @@ state-list:
 
 smoke:
 	bash tests/smoke_test.sh
+
+smoke-dev-runtime:
+	bash tests/smoke_test.sh http://localhost:8001

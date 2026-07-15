@@ -47,8 +47,23 @@ make tf-version
 make fmt-check
 make validate
 make plan-dev
+make plan-dev-save
 make apply-dev
 make output
+make smoke-dev-runtime
+make destroy-dev
+```
+
+Le workflow conseillé en fin de parcours est donc :
+
+```bash
+make up
+make fmt-check
+make validate
+make plan-dev
+make apply-dev
+make output
+make smoke-dev-runtime
 make destroy-dev
 ```
 
