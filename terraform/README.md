@@ -31,3 +31,10 @@ Dans la branche `04-state-collaboration`, le produit ne change pas fortement de 
 - un `Makefile` pour le workflow courant
 - une documentation explicite sur le `state`
 - un exemple de backend S3-like pour illustrer la collaboration
+
+Dans la branche `05-structure-modules`, le produit est restructuré autour de deux modules simples :
+
+- `artifact_store`
+- `inference_service`
+
+L'objectif n'est pas de modulariser tout le projet à outrance, mais de montrer une factorisation utile et lisible.
