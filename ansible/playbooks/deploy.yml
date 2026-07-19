@@ -1,0 +1,68 @@
+---
+- name: Orchestrer le use case Terraform MLOps
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+    runtime_url: "http://localhost:8001"
+
+  tasks:
+    - name: Demarrer le lab
+      ansible.builtin.command: docker compose up -d
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Nettoyer un lock local stale si present
+      ansible.builtin.command: rm -f .terraform.tfstate.lock.info
+      args:
+        chdir: "{{ project_root }}/terraform"
+
+    - name: Initialiser Terraform
+      ansible.builtin.command: ./terraform/scripts/tf.sh init -upgrade
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Verifier le format Terraform
+      ansible.builtin.command: ./terraform/scripts/tf.sh fmt -check
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Valider la configuration Terraform
+      ansible.builtin.command: ./terraform/scripts/tf.sh validate
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Appliquer le contexte dev
+      ansible.builtin.command: ./terraform/scripts/tf.sh apply -auto-approve -var-file=environments/dev/dev.tfvars
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Attendre que l'API reponde sur health
+      ansible.builtin.uri:
+        url: "{{ runtime_url }}/health"
+        method: GET
+        status_code: 200
+      register: health_result
+      retries: 30
+      delay: 2
+      until: health_result.status == 200
+
+    - name: Envoyer une requete de scoring
+      ansible.builtin.uri:
+        url: "{{ runtime_url }}/predict"
+        method: POST
+        body_format: json
+        body:
+          amount: 1499.0
+          merchant_category: travel
+          hour_of_day: 2
+          country: FR
+          is_international: true
+          device_risk_score: 0.91
+        status_code: 200
+      register: predict_result
+
+    - name: Afficher le resultat du predict
+      ansible.builtin.debug:
+        var: predict_result.json

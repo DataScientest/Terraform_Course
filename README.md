@@ -67,6 +67,18 @@ make smoke-dev-runtime
 make destroy-dev
 ```
 
+## Bonus Ansible
+
+Un bonus Ansible est aussi présent pour orchestrer le use case de bout en bout :
+
+```bash
+make ansible-deploy
+make ansible-destroy
+```
+
+Ici, Terraform reste responsable du provisionnement.
+Ansible sert surtout à automatiser l'enchaînement des étapes.
+
 ## Logique de travail
 
 Le repo sera construit **branche par branche**.

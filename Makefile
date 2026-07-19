@@ -1,4 +1,4 @@
-.PHONY: up down ps tf-version fmt-check validate plan-dev plan-dev-save apply-dev destroy-dev output state-list smoke smoke-dev-runtime
+.PHONY: up down ps tf-version fmt-check validate plan-dev plan-dev-save apply-dev destroy-dev output state-list smoke smoke-dev-runtime ansible-deploy ansible-destroy
 
 up:
 	docker compose up -d
@@ -41,3 +41,9 @@ smoke:
 
 smoke-dev-runtime:
 	bash tests/smoke_test.sh http://localhost:8001
+
+ansible-deploy:
+	ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/playbooks/deploy.yml
+
+ansible-destroy:
+	ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook ansible/playbooks/destroy.yml

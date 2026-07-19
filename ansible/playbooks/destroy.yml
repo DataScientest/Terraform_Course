@@ -1,0 +1,23 @@
+---
+- name: Nettoyer le use case Terraform MLOps
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    project_root: "{{ playbook_dir }}/../.."
+
+  tasks:
+    - name: Redemarrer le lab si necessaire
+      ansible.builtin.command: docker compose up -d
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Detruire le contexte dev
+      ansible.builtin.command: ./terraform/scripts/tf.sh destroy -auto-approve -var-file=environments/dev/dev.tfvars
+      args:
+        chdir: "{{ project_root }}"
+
+    - name: Arreter le lab
+      ansible.builtin.command: docker compose down
+      args:
+        chdir: "{{ project_root }}"
