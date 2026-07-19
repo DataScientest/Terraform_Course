@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "model_artifacts" {
-  bucket = "fraud-model-artifacts"
+  bucket = #TODO
 
   tags = {
-    project     = "fraud-scoring"
+    project     = #TODO
     environment = "dev"
     managed_by  = "terraform"
   }

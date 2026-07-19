@@ -8,6 +8,6 @@ provider "aws" {
   s3_use_path_style           = true
 
   endpoints {
-    s3 = "http://localstack:4566"
+    s3 = #TODO
   }
 }
