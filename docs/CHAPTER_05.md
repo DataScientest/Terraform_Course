@@ -9,6 +9,7 @@ Rendre le projet Terraform plus maintenable sans tomber dans la sur-abstraction.
 - deux modules simples : `artifact_store` et `inference_service`
 - un `main.tf` plus lisible au niveau racine
 - une séparation plus claire entre orchestration globale et implémentation des briques
+- un cas concret de `for_each` pour creer plusieurs buckets a partir d'un meme module
 
 ## Commandes utiles
 
@@ -32,3 +33,4 @@ Le but est de montrer :
 - quand un module devient utile
 - comment garder le projet lisible
 - pourquoi deux modules bien choisis valent mieux qu'une sur-factorisation précoce
+- comment un `for_each` peut faire grandir une brique sans dupliquer le code
