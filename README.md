@@ -89,8 +89,8 @@ Elle servira à préparer :
 ## Demarrage rapide
 
 ```bash
-docker compose up --build -d
-docker compose exec terraform terraform version
+docker-compose up --build -d
+docker-compose exec terraform terraform version
 curl http://localhost:4566/_localstack/health
 curl http://localhost:8000/health
 ```
