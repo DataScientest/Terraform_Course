@@ -16,7 +16,7 @@ Rendre la première brique du produit configurable selon l'environnement.
 ## Commandes utiles
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ./terraform/scripts/tf.sh init
 ./terraform/scripts/tf.sh fmt -check
 ./terraform/scripts/tf.sh validate
