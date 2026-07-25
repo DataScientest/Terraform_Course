@@ -1,16 +1,16 @@
 .PHONY: up down ps tf-version fmt-check validate plan-dev plan-dev-save apply-dev destroy-dev output state-list smoke smoke-dev-runtime ansible-deploy ansible-destroy
 
 up:
-	docker compose up -d
+	docker-compose up -d
 
 down:
-	docker compose down
+	docker-compose down
 
 ps:
-	docker compose ps
+	docker-compose ps
 
 tf-version:
-	docker compose exec terraform terraform version
+	docker-compose exec terraform terraform version
 
 fmt-check:
 	./terraform/scripts/tf.sh fmt -check

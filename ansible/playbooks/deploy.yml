@@ -9,7 +9,7 @@
 
   tasks:
     - name: Demarrer le lab
-      ansible.builtin.command: docker compose up -d
+      ansible.builtin.command: docker-compose up -d
       args:
         chdir: "{{ project_root }}"
 

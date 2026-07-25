@@ -8,7 +8,7 @@
 
   tasks:
     - name: Redemarrer le lab si necessaire
-      ansible.builtin.command: docker compose up -d
+      ansible.builtin.command: docker-compose up -d
       args:
         chdir: "{{ project_root }}"
 
@@ -18,6 +18,6 @@
         chdir: "{{ project_root }}"
 
     - name: Arreter le lab
-      ansible.builtin.command: docker compose down
+      ansible.builtin.command: docker-compose down
       args:
         chdir: "{{ project_root }}"

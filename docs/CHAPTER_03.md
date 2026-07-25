@@ -10,7 +10,7 @@ Ajouter une vraie brique applicative Terraform au produit :
 
 ## Pourquoi un port différent ?
 
-Le lab conserve déjà une API lancée par `docker compose` sur le port `8000`.
+Le lab conserve déjà une API lancée par `docker-compose` sur le port `8000`.
 
 Dans cette branche, Terraform gère un runtime d'inférence séparé sur un autre port, afin de :
 
@@ -30,7 +30,7 @@ Dans cette branche, Terraform gère un runtime d'inférence séparé sur un autr
 ## Commandes utiles
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ./terraform/scripts/tf.sh init
 ./terraform/scripts/tf.sh fmt -check
 ./terraform/scripts/tf.sh validate

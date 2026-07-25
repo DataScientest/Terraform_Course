@@ -18,7 +18,7 @@ Créer la première vraie brique MLOps du produit fil rouge :
 Depuis la racine du repo :
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ./terraform/scripts/tf.sh init
 ./terraform/scripts/tf.sh fmt
 ./terraform/scripts/tf.sh plan

@@ -5,13 +5,13 @@
 ```bash
 git clone https://github.com/DataScientest/Terraform_Course.git
 cd Terraform_Course
-docker compose up --build -d
+docker-compose up --build -d
 ```
 
 ## Verifier Terraform dans le conteneur
 
 ```bash
-docker compose exec terraform terraform version
+docker-compose exec terraform terraform version
 ```
 
 ## Verifier LocalStack
@@ -37,5 +37,5 @@ curl -X POST http://localhost:8000/predict \
 ## Arreter le lab
 
 ```bash
-docker compose down
+docker-compose down
 ```
