@@ -10,6 +10,14 @@ Amener le produit dans un état propre, vérifiable et transmissible.
 - un workflow final stable via `Makefile`
 - une logique claire de validation avant apply
 
+Le smoke test ne se contente plus d'appeler des endpoints. Il vérifie aussi que :
+
+- LocalStack repond en HTTP sans erreur
+- le service S3 de LocalStack est bien disponible
+- `/health` renvoie un `status=ok`
+- `/predict` renvoie un `fraud_score` numerique
+- une route inexistante echoue bien en `404`
+
 ## Workflow recommandé
 
 ```bash
