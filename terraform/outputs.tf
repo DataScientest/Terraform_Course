@@ -1,6 +1,11 @@
 output "artifact_bucket_name" {
-  description = "Nom du bucket d'artefacts du modele"
-  value       = module.artifact_store.bucket_name
+  description = "Nom du bucket principal d'artefacts du modele"
+  value       = module.artifact_store.bucket_names["artifacts"]
+}
+
+output "artifact_bucket_names" {
+  description = "Ensemble des buckets geres par le module artifact_store"
+  value       = module.artifact_store.bucket_names
 }
 
 output "environment" {
