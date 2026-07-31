@@ -3,7 +3,7 @@ set -euo pipefail
 
 API_URL="${1:-http://localhost:8000}"
 
-echo "[1/3] Verification de LocalStack"
+echo "[1/4] Verification de LocalStack"
 LOCALSTACK_HEALTH="$(curl --fail --silent --show-error --retry 10 --retry-delay 2 http://localhost:4566/_localstack/health)"
 python3 - <<'PY' "$LOCALSTACK_HEALTH"
 import json
@@ -16,7 +16,7 @@ if s3_status not in {"available", "running"}:
 print(json.dumps({"s3": s3_status}, ensure_ascii=False))
 PY
 
-echo "[2/3] Verification de l'API d'inference"
+echo "[2/4] Verification de l'API d'inference"
 HEALTH_JSON="$(curl --fail --silent --show-error --retry 15 --retry-delay 2 "${API_URL}/health")"
 python3 - <<'PY' "$HEALTH_JSON"
 import json
@@ -28,7 +28,7 @@ if payload.get("status") != "ok":
 print(json.dumps(payload, ensure_ascii=False))
 PY
 
-echo "[3/3] Verification d'un predict minimal"
+echo "[3/4] Verification d'un predict minimal"
 PREDICT_JSON="$(curl --fail --silent --show-error --retry 5 --retry-delay 2 -X POST "${API_URL}/predict" \
   -H "Content-Type: application/json" \
   -d '{"amount":1499.0,"merchant_category":"travel","hour_of_day":2,"country":"FR","is_international":true,"device_risk_score":0.91}')"
@@ -44,3 +44,10 @@ if not isinstance(score, (int, float)):
     raise SystemExit(f"fraud_score is not numeric: {payload!r}")
 print(json.dumps(payload, ensure_ascii=False))
 PY
+
+echo "[4/4] Verification d'un echec sur route inexistante"
+NOT_FOUND_STATUS="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' "${API_URL}/does-not-exist")"
+if [ "$NOT_FOUND_STATUS" != "404" ]; then
+  printf 'Expected 404 on missing route, got %s\n' "$NOT_FOUND_STATUS" >&2
+  exit 1
+fi
