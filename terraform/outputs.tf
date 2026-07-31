@@ -1,11 +1,6 @@
 output "artifact_bucket_name" {
-  description = "Nom du bucket principal d'artefacts du modele"
-  value       = module.artifact_store.bucket_names["artifacts"]
-}
-
-output "artifact_bucket_names" {
-  description = "Ensemble des buckets geres par le module artifact_store"
-  value       = module.artifact_store.bucket_names
+  description = "Nom du bucket d'artefacts du modele"
+  value       = aws_s3_bucket.model_artifacts.bucket
 }
 
 output "environment" {
@@ -20,5 +15,5 @@ output "localstack_s3_endpoint" {
 
 output "inference_runtime_url" {
   description = "URL locale du runtime d'inference gere par Terraform"
-  value       = module.inference_service.runtime_url
+  value       = "http://localhost:${var.runtime_port}"
 }

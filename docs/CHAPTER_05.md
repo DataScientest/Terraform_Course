@@ -4,12 +4,22 @@
 
 Rendre le projet Terraform plus maintenable sans tomber dans la sur-abstraction.
 
-## Ce que la branche apporte
+## Etat de depart de la branche
 
-- deux modules simples : `artifact_store` et `inference_service`
-- un `main.tf` plus lisible au niveau racine
-- une séparation plus claire entre orchestration globale et implémentation des briques
-- un cas concret de `for_each` pour creer plusieurs buckets a partir d'un meme module
+Le repo est encore volontairement plat :
+
+- le bucket S3 est toujours declare au niveau racine
+- l'image Docker est toujours declaree au niveau racine
+- le conteneur Docker est toujours declare au niveau racine
+
+Cette branche sert justement de point de depart pour faire la refactorisation au lieu de la lire deja terminee.
+
+## Travail attendu
+
+- extraire d'abord le stockage et le runtime dans des modules simples sans changer le comportement
+- relire le plan pour verifier que la refactorisation ne modifie pas le produit
+- comprendre quand un `moved` ou un `terraform state mv` devient utile pendant une refactorisation
+- ajouter ensuite un second bucket `exports` via `for_each`
 
 ## Commandes utiles
 
@@ -32,5 +42,6 @@ Le but est de montrer :
 
 - quand un module devient utile
 - comment garder le projet lisible
-- pourquoi deux modules bien choisis valent mieux qu'une sur-factorisation précoce
+- comment separer une refactorisation structurelle d'un changement de comportement
+- pourquoi deux modules bien choisis valent mieux qu'une sur-factorisation precoce
 - comment un `for_each` peut faire grandir une brique sans dupliquer le code

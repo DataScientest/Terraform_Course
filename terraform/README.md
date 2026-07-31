@@ -32,9 +32,6 @@ Dans la branche `04-state-collaboration`, le produit ne change pas fortement de 
 - une documentation explicite sur le `state`
 - un exemple de backend S3-like pour illustrer la collaboration
 
-Dans la branche `05-structure-modules`, le produit est restructuré autour de deux modules simples :
+Dans la branche `05-structure-modules`, le produit est encore plat au depart.
 
-- `artifact_store`
-- `inference_service`
-
-L'objectif n'est pas de modulariser tout le projet à outrance, mais de montrer une factorisation utile et lisible.
+L'objectif de cette branche est de prendre ce point de depart, puis de le restructurer en modules simples de maniere lisible.

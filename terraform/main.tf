@@ -1,17 +1,32 @@
-module "artifact_store" {
-  source = "./modules/artifact_store"
+resource "aws_s3_bucket" "model_artifacts" {
+  bucket = "${var.project_name}-${var.environment}-artifacts"
 
-  project_name    = var.project_name
-  environment     = var.environment
-  bucket_suffixes = var.artifact_bucket_suffixes
+  tags = {
+    project     = var.project_name
+    environment = var.environment
+    managed_by  = "terraform"
+  }
 }
 
-module "inference_service" {
-  source = "./modules/inference_service"
+resource "docker_image" "inference_runtime" {
+  name = "${var.project_name}-${var.environment}-inference:latest"
 
-  project_name    = var.project_name
-  environment     = var.environment
-  runtime_port    = var.runtime_port
-  artifact_bucket = module.artifact_store.bucket_names["artifacts"]
-  build_context   = "${path.module}/../docker/inference_api"
+  build {
+    context = "${path.module}/../docker/inference_api"
+  }
+}
+
+resource "docker_container" "inference_runtime" {
+  name  = "${var.project_name}-${var.environment}-inference"
+  image = docker_image.inference_runtime.image_id
+
+  ports {
+    internal = 8000
+    external = var.runtime_port
+  }
+
+  env = [
+    "MODEL_VERSION=v1",
+    "ARTIFACT_BUCKET=${aws_s3_bucket.model_artifacts.bucket}",
+  ]
 }
