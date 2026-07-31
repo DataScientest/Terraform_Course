@@ -1,4 +1,4 @@
-output "bucket_name" {
-  description = "Nom du bucket d'artefacts"
-  value       = aws_s3_bucket.this.bucket
+output "bucket_names" {
+  description = "Noms des buckets crees par le module"
+  value       = { for key, bucket in aws_s3_bucket.this : key => bucket.bucket }
 }

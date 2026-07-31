@@ -20,3 +20,9 @@ variable "runtime_port" {
   type        = number
   default     = 8001
 }
+
+variable "artifact_bucket_suffixes" {
+  description = "Suffixes des buckets d'artefacts a creer"
+  type        = set(string)
+  default     = ["artifacts"]
+}
