@@ -8,9 +8,11 @@ Ajouter une vraie brique applicative Terraform au produit :
 - un conteneur d'inférence local
 - un output applicatif exploitable
 
+La branche de depart est volontairement incomplete. Le bucket S3 est deja present, mais le provider Docker et les ressources du runtime restent a terminer.
+
 ## Pourquoi un port différent ?
 
-Le lab conserve déjà une API lancée par `docker compose` sur le port `8000`.
+Le lab conserve déjà une API lancée par `docker-compose` sur le port `8000`.
 
 Dans cette branche, Terraform gère un runtime d'inférence séparé sur un autre port, afin de :
 
@@ -27,10 +29,17 @@ Dans cette branche, Terraform gère un runtime d'inférence séparé sur un autr
 - `terraform/outputs.tf`
 - `terraform/environments/dev/dev.tfvars`
 
+## Travail attendu dans cette branche
+
+- declarer le provider Docker dans `terraform/provider.tf`
+- completer `runtime_port` dans `terraform/environments/dev/dev.tfvars`
+- ajouter l'image Docker du runtime dans `terraform/main.tf`
+- ajouter le conteneur Docker dans `terraform/main.tf`
+
 ## Commandes utiles
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ./terraform/scripts/tf.sh init
 ./terraform/scripts/tf.sh fmt -check
 ./terraform/scripts/tf.sh validate

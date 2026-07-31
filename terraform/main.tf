@@ -8,25 +8,6 @@ resource "aws_s3_bucket" "model_artifacts" {
   }
 }
 
-resource "docker_image" "inference_runtime" {
-  name = "${var.project_name}-${var.environment}-inference:latest"
+# TODO: ajouter ici la ressource docker_image du runtime d'inference.
 
-  build {
-    context = "${path.module}/../docker/inference_api"
-  }
-}
-
-resource "docker_container" "inference_runtime" {
-  name  = "${var.project_name}-${var.environment}-inference"
-  image = docker_image.inference_runtime.image_id
-
-  ports {
-    internal = 8000
-    external = #TODO
-  }
-
-  env = [
-    "MODEL_VERSION=v1",
-    "ARTIFACT_BUCKET=${aws_s3_bucket.model_artifacts.bucket}",
-  ]
-}
+# TODO: ajouter ici la ressource docker_container du runtime d'inference.

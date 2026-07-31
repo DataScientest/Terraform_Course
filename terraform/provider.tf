@@ -12,4 +12,4 @@ provider "aws" {
   }
 }
 
-provider "docker" {}
+# TODO: declarer ici le provider Docker.
