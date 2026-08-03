@@ -12,6 +12,16 @@ L'objectif est de faire grandir progressivement une **mini-plateforme locale de 
 - LocalStack
 - Docker
 
+## Contrat du lab
+
+- coût AWS attendu : **0 EUR**
+- destruction logique : `make destroy-dev`
+- arrêt complet du lab : `make destroy-dev` puis `make down`
+
+Ce repo dépend encore d'accès externes pour un premier rejeu : dépôt Git, images Docker, providers Terraform et, pour le bonus Ansible, installation Python d'`ansible-core`. En environnement fermé sans egress, il faut donc préparer des miroirs ou bundles internes en amont. Cette version du repo ne livre pas encore ce dispositif offline complet.
+
+
+
 Le produit final visé n'est pas une plateforme cloud complète, mais une base locale crédible permettant de :
 
 - stocker des artefacts modèle dans un bucket de type S3
