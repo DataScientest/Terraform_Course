@@ -6,12 +6,17 @@ Ajouter une couche d'orchestration post-provisioning au use case.
 
 ## Pre-requis Ansible
 
-Ce bonus a ete verifie avec `ansible-core >= 2.15` et `< 2.18`.
+Ce bonus a ete verifie avec :
+
+- `Python >= 3.9`
+- `ansible-core >= 2.15` et `< 2.18`
 
 Si `ansible-playbook` n'est pas disponible, vous pouvez installer une version compatible :
 
 - Linux / WSL2 : `python3 -m pip install --user "ansible-core>=2.15,<2.18"`
 - macOS : `python3 -m pip install --user "ansible-core>=2.15,<2.18"`
+
+Si votre machine ne fournit que Python 3.8, ce bonus n'est pas dans sa plage de test. Le plus simple est alors de jouer le bonus depuis un environnement disposant deja de `python3 >= 3.9`, par exemple une VM plus recente ou WSL2 correctement prepare.
 
 Puis controlez la compatibilite avec :
 

@@ -6,6 +6,12 @@ import sys
 
 
 def main() -> int:
+    if sys.version_info < (3, 9):
+        sys.stderr.write(
+            f"Unsupported Python version {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}. Expected Python >= 3.9 for the Ansible bonus.\n"
+        )
+        return 1
+
     result = subprocess.run(["ansible-playbook", "--version"], capture_output=True, text=True)
     if result.returncode != 0:
         sys.stderr.write(result.stderr or "ansible-playbook --version failed\n")
@@ -25,7 +31,9 @@ def main() -> int:
         )
         return 1
 
-    print(f"ansible-core {major}.{minor}.{patch} detected: compatibility OK")
+    print(
+        f"Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro} and ansible-core {major}.{minor}.{patch} detected: compatibility OK"
+    )
     return 0
 
 

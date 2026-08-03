@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker-compose exec terraform terraform "$@"
+docker-compose exec -T terraform terraform "$@"
