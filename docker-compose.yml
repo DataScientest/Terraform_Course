@@ -17,7 +17,7 @@ services:
       - DEBUG=1
       - AWS_DEFAULT_REGION=eu-west-3
     volumes:
-      - ./localstack/data:/var/lib/localstack
+      - localstack-data:/var/lib/localstack
 
   inference-api:
     build:
@@ -27,3 +27,6 @@ services:
       - "8000:8000"
     environment:
       - MODEL_VERSION=v1
+
+volumes:
+  localstack-data:
