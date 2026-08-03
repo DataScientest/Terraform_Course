@@ -10,3 +10,4 @@ terraform/*.tfstate.*
 terraform/crash.log
 terraform/tfplan
 *.tfplan
+localstack/data/
