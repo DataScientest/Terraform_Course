@@ -8,4 +8,4 @@ terraform/.terraform.lock.hcl
 terraform/*.tfstate
 terraform/*.tfstate.*
 terraform/crash.log
-tfpaln
+tfplan
