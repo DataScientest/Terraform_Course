@@ -4,7 +4,7 @@ set -euo pipefail
 API_URL="${1:-http://localhost:8000}"
 
 echo "[1/4] Verification de LocalStack"
-LOCALSTACK_HEALTH="$(curl --fail --silent --show-error --retry 10 --retry-delay 2 --retry-connrefused --max-time 10 http://localhost:4566/_localstack/health)"
+LOCALSTACK_HEALTH="$(curl --fail --silent --show-error --retry 10 --retry-delay 2 --retry-all-errors --retry-max-time 60 --connect-timeout 3 --max-time 10 http://localhost:4566/_localstack/health)"
 python3 - <<'PY' "$LOCALSTACK_HEALTH"
 import json
 import sys
@@ -17,7 +17,7 @@ print(json.dumps({"s3": s3_status}, ensure_ascii=False))
 PY
 
 echo "[2/4] Verification de l'API d'inference"
-HEALTH_JSON="$(curl --fail --silent --show-error --retry 15 --retry-delay 2 --retry-connrefused --max-time 10 "${API_URL}/health")"
+HEALTH_JSON="$(curl --fail --silent --show-error --retry 15 --retry-delay 2 --retry-all-errors --retry-max-time 60 --connect-timeout 3 --max-time 10 "${API_URL}/health")"
 python3 - <<'PY' "$HEALTH_JSON"
 import json
 import sys
@@ -29,7 +29,7 @@ print(json.dumps(payload, ensure_ascii=False))
 PY
 
 echo "[3/4] Verification d'un predict minimal"
-PREDICT_JSON="$(curl --fail --silent --show-error --retry 5 --retry-delay 2 --retry-connrefused --max-time 10 -X POST "${API_URL}/predict" \
+PREDICT_JSON="$(curl --fail --silent --show-error --retry 5 --retry-delay 2 --retry-all-errors --retry-max-time 60 --connect-timeout 3 --max-time 10 -X POST "${API_URL}/predict" \
   -H "Content-Type: application/json" \
   -d '{"amount":1499.0,"merchant_category":"travel","hour_of_day":2,"country":"FR","is_international":true,"device_risk_score":0.91}')"
 python3 - <<'PY' "$PREDICT_JSON"
